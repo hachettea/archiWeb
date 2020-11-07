@@ -1,0 +1,72 @@
+@media screen and (min-width: 0px) and (max-width: 500px) {
+  .app_title {
+    font-size: 50px !important;
+  }
+
+  h1 {
+    font-size: 30px !important;
+  }
+
+  body {
+    font-size: 18px !important;
+  }
+
+  .card {
+    padding: 0.5rem 1rem !important;
+  }
+}
+
+body {
+  color: white;
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--bgColor);
+  font-family: "Montserrat", sans-serif;
+}
+
+.connection_container {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+h1 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 800;
+}
+
+.card {
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  padding: 3rem 6rem;
+  background-color: var(--bgCard);
+  border-radius: 1rem;
+}
+
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:focus {
+  background-color: var(--accent) !important;
+  border: 1px solid var(--accent) !important;
+}
+
+#title_card {
+  margin-bottom: 3rem;
+}
+
+.app_title {
+  text-transform: uppercase;
+  font-family: "Poppins", sans-serif;
+  font-weight: 800;
+  font-size: 4rem;
+  position: absolute;
+  top: 2rem;
+  left: 3rem;
+  display: inline-block;
+}
+
+#btn_connexion {
+  margin-top: 3rem;
+}
