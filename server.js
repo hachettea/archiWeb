@@ -10,7 +10,7 @@ const port = 3000;
 const userDAO = new UserDAO();
 
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors({ origin: ["http://localhost:4200"], credentials: true }));
 app.use(require("express").static(__dirname + "/CERIGame"));
 app.use(
   session({
