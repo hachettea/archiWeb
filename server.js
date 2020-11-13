@@ -6,25 +6,44 @@ const MongoDBStore = require("connect-mongodb-session")(session);
 const cors = require("cors");
 const bodyParser = require("body-parser");
 
-const port = 3000;
 const userDAO = new UserDAO();
+
+if (prod) {
+  const port = 3000;
+  app.use(
+    session({
+      secret: "password",
+      saveUninitialized: false,
+      resave: false,
+      store: new MongoDBStore({
+        uri:
+          "mongodb://alexuser:alexpwd@localhost:27017/alexdb?authSource=admin",
+        collection: "mySessions",
+        touchAfter: 24 * 3600,
+      }),
+      cookie: { maxAge: 24 * 3600 * 1000 },
+    })
+  );
+} else {
+  const port = 3057;
+  app.use(
+    session({
+      secret: "password",
+      saveUninitialized: false,
+      resave: false,
+      store: new MongoDBStore({
+        uri: "mongodb://127.0.0.1:27017/new_york?authSource=admin",
+        collection: "mySessions",
+        touchAfter: 24 * 3600,
+      }),
+      cookie: { maxAge: 24 * 3600 * 1000 },
+    })
+  );
+}
 
 app.use(bodyParser.json());
 app.use(cors({ origin: ["http://localhost:4200"], credentials: true }));
 app.use(require("express").static(__dirname + "/CERIGame"));
-app.use(
-  session({
-    secret: "password",
-    saveUninitialized: false,
-    resave: false,
-    store: new MongoDBStore({
-      uri: "mongodb://alexuser:alexpwd@localhost:27017/alexdb?authSource=admin",
-      collection: "mySessions",
-      touchAfter: 24 * 3600,
-    }),
-    cookie: { maxAge: 24 * 3600 * 1000 },
-  })
-);
 
 app.post("/login", (req, result) => {
   if (req.body.username && req.body.password) {
