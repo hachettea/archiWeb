@@ -8,6 +8,8 @@ const bodyParser = require("body-parser");
 
 const userDAO = new UserDAO();
 
+const prod = true;
+
 if (prod) {
   const port = 3000;
   app.use(
